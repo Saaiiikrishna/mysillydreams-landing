@@ -1,0 +1,137 @@
+---
+const plans = [
+  {
+    name: 'Starter',
+    price: '₹3,999',
+    period: '/month',
+    users: 'Up to 5 users',
+    description: 'Perfect for small teams getting organised.',
+    features: [
+      'Unlimited projects',
+      'Kanban boards & backlogs',
+      'Gantt timelines',
+      'File attachments',
+      'Email notifications',
+      'Email support',
+    ],
+    cta: 'Get started',
+    highlight: false,
+  },
+  {
+    name: 'Growth',
+    price: '₹7,999',
+    period: '/month',
+    users: 'Up to 15 users',
+    description: 'For growing teams that need more power.',
+    features: [
+      'Everything in Starter',
+      'Custom roles & permissions',
+      'Time tracking',
+      'Budget tracking',
+      'Reporting & dashboards',
+      'Priority support',
+    ],
+    cta: 'Get started',
+    highlight: true,
+  },
+  {
+    name: 'Team',
+    price: '₹14,999',
+    period: '/month',
+    users: 'Up to 30 users',
+    description: 'For established teams managing complex work.',
+    features: [
+      'Everything in Growth',
+      'Multiple client workspaces',
+      'Advanced access control',
+      'API access',
+      'Custom integrations',
+      'Dedicated onboarding',
+    ],
+    cta: 'Get started',
+    highlight: false,
+  },
+];
+---
+<section id="pricing" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <span class="inline-block px-3 py-1 rounded-full bg-brand-light text-brand-primary text-sm font-semibold mb-4">
+        Simple pricing
+      </span>
+      <h2 class="text-4xl md:text-5xl font-800 text-gray-900 tracking-tight">
+        One price. No surprises.
+      </h2>
+      <p class="mt-4 text-xl text-gray-500 max-w-xl mx-auto">
+        Flat monthly billing per team. No per-seat fees, no usage caps.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-3 gap-8 items-stretch">
+      {plans.map((plan) => (
+        <div class={`relative rounded-2xl p-8 flex flex-col border transition-all hover:-translate-y-1 hover:shadow-xl ${
+          plan.highlight
+            ? 'bg-brand-dark border-brand-primary shadow-2xl ring-2 ring-brand-primary'
+            : 'bg-white border-gray-200 shadow-sm'
+        }`}>
+          {plan.highlight && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="px-4 py-1.5 rounded-full bg-brand-primary text-white text-xs font-700 uppercase tracking-wider shadow-lg">
+                Most popular
+              </span>
+            </div>
+          )}
+
+          <div class="mb-6">
+            <h3 class={`text-xl font-700 mb-1 ${plan.highlight ? 'text-white' : 'text-gray-900'}`}>
+              {plan.name}
+            </h3>
+            <p class={`text-sm ${plan.highlight ? 'text-white/60' : 'text-gray-500'}`}>
+              {plan.description}
+            </p>
+          </div>
+
+          <div class="mb-6">
+            <span class={`text-4xl font-800 ${plan.highlight ? 'text-white' : 'text-gray-900'}`}>
+              {plan.price}
+            </span>
+            <span class={`text-sm ${plan.highlight ? 'text-white/60' : 'text-gray-500'}`}>
+              {plan.period}
+            </span>
+            <div class={`mt-1 text-sm font-medium ${plan.highlight ? 'text-purple-300' : 'text-brand-primary'}`}>
+              {plan.users}
+            </div>
+          </div>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            {plan.features.map((feat) => (
+              <li class="flex items-start gap-2.5">
+                <svg viewBox="0 0 20 20" fill="currentColor" class={`w-5 h-5 mt-0.5 shrink-0 ${plan.highlight ? 'text-purple-300' : 'text-brand-primary'}`}>
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+                </svg>
+                <span class={`text-sm ${plan.highlight ? 'text-white/80' : 'text-gray-600'}`}>{feat}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="https://pm.mysillydreams.com/login"
+            class={`block text-center py-3 rounded-xl font-600 text-sm transition-all ${
+              plan.highlight
+                ? 'bg-white text-brand-primary hover:bg-brand-light'
+                : 'bg-brand-primary text-white hover:bg-brand-accent'
+            }`}
+          >
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-center text-sm text-gray-400 mt-8">
+      All plans include a 14-day free trial. Billed monthly. Cancel anytime.
+    </p>
+  </div>
+</section>
