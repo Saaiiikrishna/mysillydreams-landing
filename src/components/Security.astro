@@ -1,0 +1,135 @@
+---
+const pillars = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>`,
+    title: 'TLS 1.3 Encryption',
+    desc: 'Every byte between your browser and our servers is encrypted in transit. We enforce HTTPS everywhere — no plain-text connections, ever.',
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>`,
+    title: 'Role-Based Access Control',
+    desc: 'Fine-grained permissions per project and per user. Members only see what they\'re explicitly granted access to — nothing more.',
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"/></svg>`,
+    title: 'Complete Audit Trail',
+    desc: 'Every action — task updates, file uploads, permission changes — is logged with a timestamp and the user who made it. Nothing goes untracked.',
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z"/></svg>`,
+    title: 'Complete Client Isolation',
+    desc: 'Each client\'s workspace is fully isolated. One client can never view, access, or interfere with another client\'s projects or data.',
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 8.25h3m-3 3.75h3m-3 3.75h3M6.75 21v-.75a2.25 2.25 0 012.25-2.25h.75"/></svg>`,
+    title: 'Two-Factor Authentication',
+    desc: 'Users can secure their accounts with TOTP-based 2FA (Google Authenticator, Authy). Admins can enforce it across the workspace.',
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 2.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>`,
+    title: 'Automated Backups',
+    desc: 'Daily automated database backups stored on Azure Blob Storage. Point-in-time recovery ensures your data is never lost.',
+  },
+];
+---
+
+<section id="security" class="py-24 bg-brand-dark">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/10 mb-5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" class="w-7 h-7">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+        </svg>
+      </div>
+      <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-white/70 text-sm font-semibold mb-4">
+        Security & Trust
+      </span>
+      <h2 class="text-4xl md:text-5xl font-800 text-white tracking-tight">
+        Built secure from the ground up
+      </h2>
+      <p class="mt-4 text-xl text-white/50 max-w-2xl mx-auto">
+        Enterprise-grade security for every plan. Your clients' data is protected at every layer — infrastructure, application, and access.
+      </p>
+    </div>
+
+    <!-- Security feature grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+      {pillars.map((p) => (
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:border-white/20 transition-all group">
+          <div class="w-11 h-11 rounded-xl bg-brand-accent/20 text-brand-accent flex items-center justify-center mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors">
+            <Fragment set:html={p.icon} />
+          </div>
+          <h3 class="text-base font-700 text-white mb-2">{p.title}</h3>
+          <p class="text-white/50 leading-relaxed text-sm">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Infrastructure trust bar -->
+    <div class="border-t border-white/10 pt-10">
+      <p class="text-center text-xs font-semibold text-white/30 uppercase tracking-widest mb-8">
+        Powered by enterprise infrastructure
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+
+        <!-- Cloudflare -->
+        <div class="flex items-center gap-3 group">
+          <div class="w-9 h-9 rounded-lg bg-[#F6821F]/20 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-[#F6821F]" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.5 14.25c.13-.45.2-.91.2-1.39 0-2.9-2.36-5.25-5.26-5.25a5.25 5.25 0 00-5.04 3.78c-.34-.08-.7-.13-1.07-.13a3.75 3.75 0 000 7.5h10.5a3 3 0 00.67-5.51z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-white text-sm font-600">Cloudflare</div>
+            <div class="text-white/40 text-xs">DDoS & WAF protection</div>
+          </div>
+        </div>
+
+        <!-- Azure -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-[#0078D4]/20 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.5 4.5L7.5 19.5H3L9 7.5L13.5 4.5Z" fill="#0078D4"/>
+              <path d="M13.5 4.5L21 19.5H16.5L13.5 12L10.5 19.5H7.5L13.5 4.5Z" fill="#50B3FF"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-white text-sm font-600">Microsoft Azure</div>
+            <div class="text-white/40 text-xs">Hosted in India region</div>
+          </div>
+        </div>
+
+        <!-- TLS -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-green-500/20 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-white text-sm font-600">TLS 1.3 Encrypted</div>
+            <div class="text-white/40 text-xs">All traffic secured</div>
+          </div>
+        </div>
+
+        <!-- Data residency -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-brand-accent/20 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-white text-sm font-600">Data stays in India</div>
+            <div class="text-white/40 text-xs">No cross-border transfers</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
